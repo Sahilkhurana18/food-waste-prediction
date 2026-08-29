@@ -1,0 +1,51 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: harvestloop
+      POSTGRES_PASSWORD: harvestloop
+      POSTGRES_DB: harvestloop
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U harvestloop"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  ml-service:
+    build: ./ml-service
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql://harvestloop:harvestloop@db:5432/harvestloop?schema=public"
+      JWT_SECRET: "change-this-to-a-long-random-string"
+      PORT: 4000
+      ML_SERVICE_URL: "http://ml-service:8001"
+      CORS_ORIGIN: "http://localhost:3000"
+    ports:
+      - "4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+      ml-service:
+        condition: service_started
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

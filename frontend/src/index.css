@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.ht-root {
+  font-family: "Inter", sans-serif;
+  background: #ede8dc;
+  color: #262420;
+  min-height: 100%;
+}
+.ht-display {
+  font-family: "Fraunces", serif;
+}
+.ht-mono {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.ht-sidebar {
+  background: #17352a;
+  color: #ede8dc;
+}
+.ht-nav-item {
+  color: #b9c7bb;
+}
+.ht-nav-item.active {
+  background: #23483a;
+  color: #f3d48a;
+}
+.ht-nav-item:hover:not(.active) {
+  background: #1f3f32;
+}
+
+.ht-role-tab {
+  color: #b9c7bb;
+  border: 1px solid transparent;
+}
+.ht-role-tab.active {
+  background: #ede8dc;
+  color: #17352a;
+}
+.ht-role-tab:hover:not(.active) {
+  background: #1f3f32;
+  color: #f3d48a;
+}
+
+.ht-card {
+  background: #fbf9f3;
+  border: 1px solid #dcd5c4;
+  border-radius: 14px;
+}
+.ht-hero {
+  background: #17352a;
+  color: #ede8dc;
+  border-radius: 16px;
+}
+
+.ht-ticket {
+  background: #fbf9f3;
+  border: 1px solid #dcd5c4;
+  border-radius: 10px;
+  border-top: 3px dashed #c6bb9e;
+  position: relative;
+}
+.ht-stamp {
+  transform: rotate(-8deg);
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.06em;
+  border: 1.5px solid currentColor;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ht-slider {
+  -webkit-appearance: none;
+  height: 4px;
+  border-radius: 4px;
+  background: #dcd5c4;
+}
+.ht-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #17352a;
+  cursor: pointer;
+  border: 3px solid #f3d48a;
+}
+.ht-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #17352a;
+  cursor: pointer;
+  border: 3px solid #f3d48a;
+}
+
+.ht-toggle {
+  border: 1px solid #dcd5c4;
+  background: #fbf9f3;
+  color: #6b6656;
+}
+.ht-toggle.on {
+  background: #17352a;
+  color: #f3d48a;
+  border-color: #17352a;
+}
+
+.ht-input {
+  border: 1px solid #dcd5c4;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+}
+.ht-input:focus {
+  outline: 2px solid #f3d48a;
+  outline-offset: 1px;
+}
+
+.ht-btn-primary {
+  background: #17352a;
+  color: #f3d48a;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.ht-btn-primary:hover {
+  background: #0f281f;
+}
+.ht-btn-ghost {
+  background: transparent;
+  border: 1px solid #dcd5c4;
+  border-radius: 8px;
+  color: #262420;
+}
+.ht-btn-ghost:hover {
+  background: #f2eee1;
+}

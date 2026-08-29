@@ -1,0 +1,37 @@
+{
+  "comparison": {
+    "Linear Regression": {
+      "MAE": 3.77,
+      "RMSE": 5.16,
+      "R2": 0.936
+    },
+    "Random Forest": {
+      "MAE": 2.53,
+      "RMSE": 3.48,
+      "R2": 0.971
+    },
+    "XGBoost": {
+      "MAE": 2.53,
+      "RMSE": 3.52,
+      "R2": 0.97
+    }
+  },
+  "best_model": "Random Forest",
+  "feature_columns": [
+    "restaurant_id",
+    "meal_type",
+    "day_of_week",
+    "is_weekend",
+    "is_holiday",
+    "month",
+    "temperature",
+    "rainfall",
+    "special_event",
+    "previous_day_sales",
+    "previous_week_avg_sales",
+    "avg_7day_sales"
+  ],
+  "target": "quantity_sold",
+  "train_rows": 3820,
+  "test_rows": 680
+}
