@@ -14,4 +14,8 @@ COPY . .
 RUN python data/generate_dataset.py && python train.py
 
 EXPOSE 8001
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001"]
+# Shell form (not exec/JSON array) so ${PORT} is actually substituted at
+# container start. Render (and most PaaS platforms) inject their own PORT
+# env var and expect the app to bind to it; local docker-compose doesn't
+# set PORT, so this falls back to 8001 to match the existing port mapping.
+CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8001}
