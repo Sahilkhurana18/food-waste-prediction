@@ -12,9 +12,17 @@ import forecastRoutes from "./routes/forecast.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import { initSocket } from "./lib/socket.js";
 
+// CORS_ORIGIN accepts a single origin or a comma-separated list, e.g.
+// "http://localhost:3000,https://harvest-loop-frontend.onrender.com" — so
+// local dev and a live deployment can both reach this API without
+// redeploying every time you switch between them.
+const allowedOrigins = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(",").map((o) => o.trim()).filter(Boolean)
+  : "*";
+
 const app = express();
 
-app.use(cors({ origin: process.env.CORS_ORIGIN || "*" }));
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 app.use(morgan("dev"));
 
@@ -34,7 +42,7 @@ app.use((err, req, res, next) => {
 });
 
 const httpServer = http.createServer(app);
-initSocket(httpServer, process.env.CORS_ORIGIN);
+initSocket(httpServer, allowedOrigins);
 
 const PORT = process.env.PORT || 4000;
 httpServer.listen(PORT, () => {
